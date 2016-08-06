@@ -22,8 +22,6 @@ add_executable(EdoviaServer ${SOURCE_FILES})
 
 find_package(LibUV REQUIRED)
 
-find_package(Boost REQUIRED)
-
 
 include_directories(SYSTEM thirdparty src ${LIBUV_INCLUDE_DIRS} ${Boost_INCLUDE_DIRS})
 target_link_libraries(${PROJECT_NAME} ${LIBUV_LIBRARIES})

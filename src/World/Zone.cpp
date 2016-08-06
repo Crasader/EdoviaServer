@@ -23,7 +23,7 @@ void Zone::sendPositionUpdate(PlayerSession* session, float x, float y, float z)
         if (sessionIterator == session)
             continue;
 
-        std::shared_ptr<Packet> packet = std::make_shared<Packet>((int)OpcodeHandler::Opcodes::SC_MOVE);
+        std::shared_ptr<Packet> packet = std::make_shared<Packet>((int)OpcodeHandler::Opcodes::SC_MOVEPACKET);
         Packet& packetp = *packet.get();
         packetp << x;
         packetp << y;

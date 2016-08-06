@@ -22,7 +22,12 @@ Logger::Logger()
         spdlog::set_async_mode(8192);
 
         std::vector<spdlog::sink_ptr> sinks;
+#ifndef _WIN32
         sinks.push_back(std::make_shared<spdlog::sinks::ansicolor_sink>(std::make_shared<spdlog::sinks::stdout_sink_mt>()));
+#else
+		// without color for windows
+		sinks.push_back(std::make_shared<spdlog::sinks::stdout_sink_mt>());
+#endif
         sinks.push_back(std::make_shared<spdlog::sinks::daily_file_sink_mt>("logfile", "txt", 23, 59));
         logger = std::make_shared<spdlog::logger>("name", begin(sinks), end(sinks));
         spdlog::register_logger(logger);

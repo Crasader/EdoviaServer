@@ -13,6 +13,12 @@ void signalHandler(int s){
 
 void initializeSignalHandler()
 {
+#ifdef _WIN32
+	typedef void(*SignalHandlerPointer)(int);
+
+	SignalHandlerPointer handler;
+	handler = signal(SIGINT, signalHandler);
+#else
     struct sigaction sigIntHandler;
 
     sigIntHandler.sa_handler = signalHandler;
@@ -23,6 +29,7 @@ void initializeSignalHandler()
 
     // ignore sigpipe
     signal(SIGPIPE, SIG_IGN);
+#endif
 }
 
 int main() {

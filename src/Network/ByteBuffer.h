@@ -219,7 +219,7 @@ public:
         uint64_t number;
         std::memcpy(&number, &value, sizeof(value));
 
-        append<uint64_t>(value);
+        append<uint64_t>(number);
         return *this;
     }
 

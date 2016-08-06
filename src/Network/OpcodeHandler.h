@@ -25,8 +25,8 @@ public:
     {
         RESERVED = 0,
         RESERVED_2 = 10,
-        CS_MOVE = 11,
-        SC_MOVE = 12,
+        CS_MOVEPACKET = 11,
+        SC_MOVEPACKET = 12,
         NUM,
     };
 

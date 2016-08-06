@@ -1,6 +1,8 @@
 #include "Connection.h"
 
+#ifndef _WIN32
 #include <alloca.h>
+#endif
 #include <cassert>
 
 #include "Log/Logger.h"
@@ -200,7 +202,7 @@ void Connection::processPacket()
 
 void Connection::sendPacket(std::shared_ptr<Packet> packet)
 {
-    uint16_t bodylength = packet->getSize()+2; // length = content + opcode 2 bytes
+    uint16_t bodylength = (uint16_t)packet->getSize()+2; // length = content + opcode 2 bytes
     uint16_t opcode = packet->getOpcode();
 
     assert(bodylength < 102400); // smaller than 100 kilobytes, because allocating on stack
